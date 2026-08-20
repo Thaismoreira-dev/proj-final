@@ -39,3 +39,55 @@ while True:
         break
     else:
         print("Opção inválida!")
+
+
+espacos = [
+    {
+        "codigo": "S01",
+        "tipo": "Sala",
+        "nome": "Sala de Aula 01",
+        "disponivel": True
+    },
+    {
+        "codigo": "S02",
+        "tipo": "Sala",
+        "nome": "Sala de Aula 02",
+        "disponivel": True
+    },
+    {
+        "codigo": "S03",
+        "tipo": "Sala",
+        "nome": "Sala de Aula 03",
+        "disponivel": True
+    },
+    {
+        "codigo": "S04",
+        "tipo": "Sala",
+        "nome": "Sala de Aula 04",
+        "disponivel": True
+    },
+    {
+        "codigo": "L01",
+        "tipo": "Laboratório",
+        "nome": "Laboratório de Informática 01",
+        "disponivel": True
+    },
+    {
+        "codigo": "L02",
+        "tipo": "Laboratório",
+        "nome": "Laboratório de Informática 02",
+        "disponivel": True
+    },
+    {
+        "codigo": "L03",
+        "tipo": "Laboratório",
+        "nome": "Laboratório de Redes",
+        "disponivel": True
+    },
+    {
+        "codigo": "A01",
+        "tipo": "Auditório",
+        "nome": "Auditório Principal",
+        "disponivel": True
+    }
+]
