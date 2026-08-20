@@ -1,96 +1,76 @@
-espacos = []
+espacos = [
+    {"codigo": "S01", "tipo": "Sala", "nome": "Sala de Aula 01", "disponivel": True},
+    {"codigo": "S02", "tipo": "Sala", "nome": "Sala de Aula 02", "disponivel": True},
+    {"codigo": "S03", "tipo": "Sala", "nome": "Sala de Aula 03", "disponivel": True},
+    {"codigo": "S04", "tipo": "Sala", "nome": "Sala de Aula 04", "disponivel": True},
+    {"codigo": "L01", "tipo": "Laboratório", "nome": "Laboratório de Informática 01", "disponivel": True},
+    {"codigo": "L02", "tipo": "Laboratório", "nome": "Laboratório de Informática 02", "disponivel": True},
+    {"codigo": "L03", "tipo": "Laboratório", "nome": "Laboratório de Redes", "disponivel": True},
+    {"codigo": "A01", "tipo": "Auditório", "nome": "Auditório Principal", "disponivel": True}
+]
 
-def cadastrar_espaco():
-    id_espaco = input("ID do espaço: ")
-    nome = input("Nome do espaço: ")
-    capacidade = int(input("Capacidade: "))
-    projetor = input("Possui projetor? (s/n): ")
-    tem_projetor = projetor == "s"
-
-    espacos.append({"id_espaco": id_espaco, "nome": nome, "capacidade": capacidade, "tem_projetor": tem_projetor})
-    print("Espaço cadastrado com sucesso!")
+reservas = []
 
 
 def listar_espacos():
-    if not espacos:
-        print("Não tem nenhum espaço cadastrado")
+    print("Espaços")
+    for espaco in espacos:
+        status = "Disponível" if espaco["disponivel"] else "Reservado"
+        print(f"{espaco['codigo']} - {espaco['nome']} ({status})")
+
+
+def reservar_espaco():
+    codigo = input("Digite o código do espaço: ").upper()
+
+    for espaco in espacos:
+        if espaco["codigo"] == codigo:
+            if espaco["disponivel"]:
+                nome_usuario = input("Nome do responsável: ")
+
+                espaco["disponivel"] = False
+
+                reservas.append({
+                    "responsavel": nome_usuario,
+                    "codigo": codigo,
+                    "nome_espaco": espaco["nome"]
+                })
+
+                print("Reserva realizada com sucesso!")
+            else:
+                print("Espaço já está reservado!")
+            return
+
+    print("Código não encontrado!")
+
+
+def listar_reservas():
+    if not reservas:
+        print("Nenhuma reserva cadastrada.")
         return
 
-    print("Espaçõses cadastrados: ")
-    for espaco in espacos:
-        print(f"ID: {espaco['id_espaco']}",
-              f"Nome: {espaco['nome']}",
-              f"Capacidade: {espaco['capacidade']}",
-              f"Projetor: {espaco['tem_projetor']}")
-
-import escopo
-
+    print("\n=== RESERVAS ===")
+    for reserva in reservas:
+        print(
+            f"Responsável: {reserva['responsavel']} | "
+            f"Espaço: {reserva['codigo']} - {reserva['nome_espaco']}"
+        )
 while True:
-    print("1 - Cadastrar espaço")
-    print("2 - Listar espaços")
-    print("3 - Sair")
+    print("Sistemas de reserva de espaços: ")
+    print("1 - Listar espaços")
+    print("2 - Reservar espaço")
+    print("3 - Listar reservas")
+    print("4 - Sair")
 
     opcao = input("Escolha uma opção: ")
+
     if opcao == "1":
-        escopo.cadastrar_espaco()
+        listar_espacos()
     elif opcao == "2":
-        escopo.listar_espacos()
+        reservar_espaco()
     elif opcao == "3":
+        listar_reservas()
+    elif opcao == "4":
+        print("Encerrando sistema...")
         break
     else:
         print("Opção inválida!")
-
-
-espacos = [
-    {
-        "codigo": "S01",
-        "tipo": "Sala",
-        "nome": "Sala de Aula 01",
-        "disponivel": True
-    },
-    {
-        "codigo": "S02",
-        "tipo": "Sala",
-        "nome": "Sala de Aula 02",
-        "disponivel": True
-    },
-    {
-        "codigo": "S03",
-        "tipo": "Sala",
-        "nome": "Sala de Aula 03",
-        "disponivel": True
-    },
-    {
-        "codigo": "S04",
-        "tipo": "Sala",
-        "nome": "Sala de Aula 04",
-        "disponivel": True
-    },
-    {
-        "codigo": "L01",
-        "tipo": "Laboratório",
-        "nome": "Laboratório de Informática 01",
-        "disponivel": True
-    },
-    {
-        "codigo": "L02",
-        "tipo": "Laboratório",
-        "nome": "Laboratório de Informática 02",
-        "disponivel": True
-    },
-    {
-        "codigo": "L03",
-        "tipo": "Laboratório",
-        "nome": "Laboratório de Redes",
-        "disponivel": True
-    },
-    {
-        "codigo": "A01",
-        "tipo": "Auditório",
-        "nome": "Auditório Principal",
-        "disponivel": True
-    }
-]
-
-def retornar_espacos_disponiveis():
-    return [espaco for espaco in espacos if espaco["disponivel"]]
