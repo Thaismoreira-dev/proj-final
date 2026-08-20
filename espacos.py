@@ -91,3 +91,6 @@ espacos = [
         "disponivel": True
     }
 ]
+
+def retornar_espacos_disponiveis():
+    return [espaco for espaco in espacos if espaco["disponivel"]]
