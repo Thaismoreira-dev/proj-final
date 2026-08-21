@@ -48,7 +48,7 @@ def listar_reservas():
         print("Nenhuma reserva cadastrada.")
         return
 
-    print("\n=== RESERVAS ===")
+    print("Reservas: ")
     for reserva in reservas:
         print(
             f"Responsável: {reserva['responsavel']} | "
