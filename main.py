@@ -28,3 +28,5 @@ if resultado:
     print("Reserva encontrada!")
 else:
     print("Reserva não encontrada!")
+
+from dados import espacos, responsaveis, horarios, datas
